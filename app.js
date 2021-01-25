@@ -23,4 +23,12 @@ io.sockets.on('connection', (socket) => {
     });
 });
 
+app.get('/', (req, res) => {
+    const rs = fs.createReadStream(path.join(__dirname, '/public/index.html'));
+    res.send(rs);
+});
+app.all('*', (req, res) => {
+    res.status(404).send('Path not defined!');
+});
+
 module.exports = server;
